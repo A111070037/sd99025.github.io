@@ -1,19 +1,31 @@
 function setup() {
     // put setup code here
-    createCanvas(480, 360);
-    background('#ffaaee');
+    createCanvas(400, 400);
+    background(0);
+    angleMode(DEGREES);
+    
+    noFill();
 }
 function draw() {
     // put drawing code here
-    r = random{255};
-    g = random{255};
-    b = rabdom{255};
-    storkeColor = color(r,g,b);
-    x1 = width/2;
-    y2 = height/2;
-    x2 = random(0,width);
-    y2 = random(0,height/2);
-    strok(strokeColor);
-    strokeWeight(8);
-    line(x1,y1,x2,y2);
+    background(0);
+
+    x = width*0.5; // x coordinate of the center
+    y = height*0.5; // y coordinate of the center
+    numEdges = 5; // number of edges
+    r = 150; // radius
+    d = 180; // start angle 
+
+    stroke('yellow');
+    beginShape();
+    for (i=0; i<=numEdges; i++) {
+        sx = x + r*sin(d);
+        sy = y + r*cos(d);
+        vertex(sx, sy);
+        d += (360/numEdges);
+    }
+    endShape();
+
+    stroke('lightskyblue');
+    circle(x, y, 2*r);
 }
