@@ -1,18 +1,35 @@
+var x;
+var y;
+var px;
+var py;
+var easing = 0.09;
 function setup() {
     // put setup code here
-    createCanvas(400, 300);
-    background(0);
-    strokeColor = 'yellow';
-    stroke(strokeColor);
-    noFill();
-    x1 = weigh/3;
-    y1 = height*4/5;
-    x2 = weigh/3*2;
-    y2 = height*4/5;
+    createCanvas(480, 480);
+    colorMode(HSB, 360, 100, 100, 1);
+    x = width/2;
+    y = height/2;
+    px = width/2;
+    py = height/2;
 }
-
 function draw() {
     // put drawing code here
-    background(0);
-    triangle(x1, y1, x2, y2, mouseX, mouseY);
+    var weight;
+    
+    x += (mouseX - x) * easing;
+    y += (mouseY - y) * easing;
+    
+    weight = dist(x, y, px, py)*3;
+    strokeWeight(weight);
+    if (mouseIsPressed) {
+        if (mouseButton == LEFT) {
+            stroke(255, 100, 100, 0.1);
+            line(x, y, px, py);    
+        }
+        if (mouseButton == RIGHT) {
+            background(255);
+        }
+    }
+    py = y;
+    px = x;
 }
