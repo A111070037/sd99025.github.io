@@ -1,35 +1,31 @@
-var x;
-var y;
-var px;
-var py;
-var easing = 0.09;
+var angle = 0.0;
+var rot_step = 1;
+var r = 30;
 function setup() {
     // put setup code here
-    createCanvas(480, 480);
-    colorMode(HSB, 360, 100, 100, 1);
-    x = width/2;
-    y = height/2;
-    px = width/2;
-    py = height/2;
+    createCanvas(400, 400);
+    angleMode(DEGREES);
 }
 function draw() {
     // put drawing code here
-    var weight;
+    background(255);
+    x = width/2;
+    y = height/2;
     
-    x += (mouseX - x) * easing;
-    y += (mouseY - y) * easing;
-    
-    weight = dist(x, y, px, py)*3;
-    strokeWeight(weight);
-    if (mouseIsPressed) {
-        if (mouseButton == LEFT) {
-            stroke(255, 100, 100, 0.1);
-            line(x, y, px, py);    
-        }
-        if (mouseButton == RIGHT) {
-            background(255);
-        }
+    if (mouseIsPressed==true) {
+        rot_speed = 20; // 前進20*rot_step單位
     }
-    py = y;
-    px = x;
+    else {
+        rot_speed = 0; // 停止
+    }
+    angle += (rot_speed*rot_step);
+
+    // 以當時滑鼠對應的座標為原點，旋轉座標系統，當rot_speed愈大，每次改變的角度愈多
+    translate(x, y);
+    rotate(angle);
+
+    fill(color(255, 0, 0, 160));
+    circle(0, 0, r, -r, r, r);
+    fill(color(255, 255, 255, 0));
+    tcircle(0, 0, r/2);
 }
