@@ -5,30 +5,34 @@ var toggleColor=8;
 var r = 30;
 
 function setup() {
-    // put setup code here
     createCanvas(400, 400);
-    angleMode(DEGREES);
-    colorMode(HSB, 360, 100, 100, 1);
-}
-function draw() {
-    // put drawing code here
-    background(255);
-    fill(toggle*360/toggleColor, 100, 100, 0.8);
-
-    if (mouseIsPressed==true) {
-        rot_speed = 20; // 前進20*rot_step單位
-    }
-    else {
-        rot_speed = 5; // 前進5*rot_step單位
-    }
-    angle += (rot_speed*rot_step);
-
-    // 以當時滑鼠對應的座標為原點，旋轉座標系統，當rot_speed愈大，每次改變的角度愈多
-    translate(mouseX, mouseY);
-    rotate(angle);
-    triangle(sin(0)*r, cos(0)*r, sin(120)*r, cos(120)*r, sin(240)*r, cos(240)*r);
-}
-
-function mouseClicked() {
-    toggle = (toggle+1)%toggleColor;
-}
+  }
+  
+  function draw() {
+    background(220);
+  
+    // 房子的主體
+    fill(150, 75, 0); // 棕色
+    rect(100, 200, 200, 150);
+  
+    // 房頂
+    fill(100, 100, 100); // 灰色
+    triangle(100, 200, 200, 100, 300, 200);
+  
+    // 窗戶
+    fill(200); // 白色
+    rect(130, 230, 40, 40);
+    rect(230, 230, 40, 40);
+  
+    // 門
+    fill(0, 0, 150); // 藍色
+    rect(185, 275, 30, 75);
+  
+    // 門的手把
+    fill(255); // 白色
+    ellipse(210, 315, 10, 10);
+  
+    // 陽台
+    fill(100, 100, 100); // 灰色
+    rect(150, 275, 100, 15);
+  }
